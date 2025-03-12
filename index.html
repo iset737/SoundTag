@@ -29,12 +29,23 @@
             border-radius: 50%;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
-            transition: background-color 0.3s ease; /* Плавный переход для эффекта темнения */
         }
-        .button:active {
-            background-color: rgba(0, 0, 0, 0.5); /* Темнеет при нажатии */
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0); /* Начальный прозрачный фон */
+            transition: background 0.3s ease; /* Плавный переход для эффекта затемнения */
+        }
+        .button:active::after {
+            background: rgba(0, 0, 0, 0.5); /* Темнеет при нажатии */
         }
         .label-container {
             background-color: rgba(0, 0, 0, 0.5); /* Тёмный фон для текста */
