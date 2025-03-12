@@ -18,6 +18,10 @@
         }
         .container {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .button {
             width: 150px;
@@ -28,7 +32,6 @@
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
             transition: filter 0.3s ease; /* Плавный переход для эффекта темнения */
-            margin-bottom: 10px; /* Отступ между кнопкой и текстом */
         }
         .button:active {
             filter: brightness(0.7); /* Темнеет при нажатии */
@@ -37,7 +40,7 @@
             background-color: rgba(0, 0, 0, 0.5); /* Тёмный фон для текста */
             border-radius: 10px;
             padding: 5px 15px;
-            display: inline-block;
+            margin-top: 10px;
         }
         .label {
             font-size: 20px;
