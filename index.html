@@ -27,18 +27,21 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: none;
+            border: 5px solid white; /* Белая обводка с толщиной 5px */
             cursor: pointer;
             position: relative;
             overflow: hidden;
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
-            transition: background 0.3s ease; /* Плавный переход для изменения фона */
+            transition: background 0.3s ease, border 0.3s ease; /* Плавный переход для фона и обводки */
         }
         .button.playing {
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
             filter: brightness(50%); /* Темнеет кнопка во время воспроизведения */
+        }
+        .button:focus {
+            outline: none; /* Убирает стандартный синий контур */
         }
         .label-container {
             background-color: rgba(0, 0, 0, 0.5); /* Тёмный фон для текста */
