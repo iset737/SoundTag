@@ -11,30 +11,23 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         .button {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background-color: #4CAF50;
             border: none;
-            font-size: 20px;
-            color: white;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #45a049;
+            background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180959.jpg') no-repeat center center;
+            background-size: cover;
         }
     </style>
 </head>
 <body>
 
-    <button class="button" id="playButton">Play</button>
+    <button class="button" id="playButton"></button>
     <audio id="audio" loop>
         <source src="https://raw.githubusercontent.com/iset737/SoundTag/main/pearlchilds_2025-03-12-17-21-44_1741789304250.mp3" type="audio/mpeg">
         Ваш браузер не поддерживает аудио.
@@ -48,10 +41,10 @@
             try {
                 if (audio.paused) {
                     await audio.play();
-                    playButton.textContent = 'Pause';
+                    playButton.style.opacity = "0.7"; // Эффект нажатия
                 } else {
                     audio.pause();
-                    playButton.textContent = 'Play';
+                    playButton.style.opacity = "1"; // Возвращаем прозрачность
                 }
             } catch (error) {
                 console.error('Ошибка воспроизведения:', error);
