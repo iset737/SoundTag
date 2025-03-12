@@ -34,8 +34,9 @@
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
             transition: background 0.3s ease, border 0.3s ease; /* Плавный переход для фона и обводки */
-            outline: none; /* Убираем обводку */
+            outline: none; /* Убираем стандартную обводку */
             box-shadow: none; /* Убираем тень */
+            user-select: none; /* Отключаем выделение элемента */
         }
         .button.playing {
             filter: brightness(50%); /* Темнеет кнопка во время воспроизведения */
