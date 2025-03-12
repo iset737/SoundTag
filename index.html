@@ -34,15 +34,16 @@
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
             transition: background 0.3s ease, border 0.3s ease; /* Плавный переход для фона и обводки */
+            outline: none; /* Убираем обводку */
+            box-shadow: none; /* Убираем тень */
         }
         .button.playing {
-            background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
-            background-size: cover;
             filter: brightness(50%); /* Темнеет кнопка во время воспроизведения */
         }
-        /* Убираем синий контур и обводку при нажатии */
-        button:active, button:focus {
+        /* Убираем синий контур и обводку при нажатии и фокусе */
+        button:focus, button:active {
             outline: none !important;
+            box-shadow: none !important;
         }
         button::-moz-focus-inner {
             border: 0 !important;
@@ -104,4 +105,4 @@
     </script>
 
 </body>
-</html>     
+</html>
