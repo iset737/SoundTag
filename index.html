@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,19 +35,27 @@
 <body>
 
     <button class="button" id="playButton">Play</button>
-    <audio id="audio" src="https://github.com/iset737/SoundTag/blob/main/pearlchilds_2025-03-12-17-21-44_1741789304250.mp3" preload="auto"></audio>
+    <audio id="audio">
+        <source src="https://raw.githubusercontent.com/iset737/SoundTag/main/pearlchilds_2025-03-12-17-21-44_1741789304250.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
 
     <script>
         const playButton = document.getElementById('playButton');
         const audio = document.getElementById('audio');
 
-        playButton.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playButton.textContent = 'Pause';
-            } else {
-                audio.pause();
-                playButton.textContent = 'Play';
+        playButton.addEventListener('click', async () => {
+            try {
+                if (audio.paused) {
+                    await audio.play();
+                    playButton.textContent = 'Pause';
+                } else {
+                    audio.pause();
+                    playButton.textContent = 'Play';
+                }
+            } catch (error) {
+                console.error('Ошибка воспроизведения:', error);
+                alert('Не удалось воспроизвести аудио. Попробуйте другой браузер.');
             }
         });
     </script>
