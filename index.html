@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Button</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -13,6 +14,7 @@
             margin: 0;
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180959.jpg') no-repeat center center fixed;
             background-size: cover;
+            font-family: 'Roboto', sans-serif;
         }
         .container {
             text-align: center;
@@ -25,11 +27,21 @@
             cursor: pointer;
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
+            transition: filter 0.3s ease; /* Плавный переход для эффекта темнения */
+        }
+        .button:active {
+            filter: brightness(0.7); /* Темнеет при нажатии */
+        }
+        .label-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Тёмный фон для текста */
+            border-radius: 10px;
+            padding: 5px 15px;
+            margin-top: 10px;
+            display: inline-block;
         }
         .label {
             font-size: 20px;
             color: white;
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -37,7 +49,9 @@
 
     <div class="container">
         <button class="button" id="playButton"></button>
-        <div id="playPauseLabel" class="label">Play</div>
+        <div id="playPauseLabel" class="label-container">
+            <span class="label">Play</span>
+        </div>
     </div>
 
     <audio id="audio" loop>
@@ -54,12 +68,10 @@
             try {
                 if (audio.paused) {
                     await audio.play();
-                    label.textContent = 'Pause'; // Меняем надпись на "Pause"
-                    playButton.style.opacity = "0.7"; // Эффект нажатия
+                    label.querySelector('.label').textContent = 'Pause'; // Меняем надпись на "Pause"
                 } else {
                     audio.pause();
-                    label.textContent = 'Play'; // Меняем надпись на "Play"
-                    playButton.style.opacity = "1"; // Возвращаем прозрачность
+                    label.querySelector('.label').textContent = 'Play'; // Меняем надпись на "Play"
                 }
             } catch (error) {
                 console.error('Ошибка воспроизведения:', error);
