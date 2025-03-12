@@ -27,30 +27,20 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 3px solid white; /* Обводка теперь тоньше (3px) */
+            border: 3px solid white; /* Тонкая обводка кнопки */
             cursor: pointer;
             position: relative;
-            overflow: hidden;
             background: url('https://raw.githubusercontent.com/iset737/SoundTag/main/20250312_180605.jpg') no-repeat center center;
             background-size: cover;
-            transition: background 0.3s ease, border 0.3s ease; /* Плавный переход для фона и обводки */
+            transition: background 0.3s ease, filter 0.3s ease; /* Плавный переход для фона и эффекта затемнения */
             outline: none; /* Убираем стандартную обводку */
             box-shadow: none; /* Убираем тень */
-            user-select: none; /* Отключаем выделение элемента */
         }
         .button.playing {
-            filter: brightness(50%); /* Темнеет кнопка во время воспроизведения */
-        }
-        /* Убираем синий контур и обводку при нажатии и фокусе */
-        button:focus, button:active {
-            outline: none !important;
-            box-shadow: none !important;
-        }
-        button::-moz-focus-inner {
-            border: 0 !important;
+            filter: brightness(50%); /* Затемнение кнопки, когда музыка играет */
         }
         .label-container {
-            background-color: rgba(0, 0, 0, 0.5); /* Тёмный фон для текста */
+            background-color: rgba(0, 0, 0, 0.5); /* Темный фон под текстом */
             border-radius: 10px;
             padding: 5px 15px;
             margin-top: 10px;
@@ -81,16 +71,17 @@
         const audio = document.getElementById('audio');
         const label = document.getElementById('playPauseLabel');
 
+        // Слушаем нажатие на кнопку
         playButton.addEventListener('click', async () => {
             try {
                 if (audio.paused) {
-                    await audio.play();
-                    label.querySelector('.label').textContent = 'Pause'; // Меняем надпись на "Pause"
-                    playButton.classList.add('playing'); // Кнопка затемняется
+                    await audio.play();  // Начинаем воспроизведение
+                    label.querySelector('.label').textContent = 'Pause'; // Меняем текст на "Pause"
+                    playButton.classList.add('playing'); // Темнеем кнопку
                 } else {
-                    audio.pause();
-                    label.querySelector('.label').textContent = 'Play'; // Меняем надпись на "Play"
-                    playButton.classList.remove('playing'); // Убираем затемнение с кнопки
+                    audio.pause();  // Останавливаем воспроизведение
+                    label.querySelector('.label').textContent = 'Play'; // Меняем текст на "Play"
+                    playButton.classList.remove('playing'); // Убираем затемнение кнопки
                 }
             } catch (error) {
                 console.error('Ошибка воспроизведения:', error);
@@ -98,10 +89,14 @@
             }
         });
 
-        // Обрабатываем событие, когда аудио заканчивается, чтобы снять класс "playing"
+        // Задаем зацикленное воспроизведение
+        audio.loop = true;
+
+        // Обрабатываем событие, когда музыка должна продолжать играть по кругу
         audio.addEventListener('ended', () => {
-            playButton.classList.remove('playing'); // Убираем затемнение
-            label.querySelector('.label').textContent = 'Play'; // Ставим "Play" обратно
+            // Событие "ended" не сработает, так как мы используем loop
+            // Если бы не было loop, здесь можно было бы сбросить состояние
+            console.log('Трек зациклен и продолжает играть');
         });
     </script>
 
